@@ -10,5 +10,19 @@ namespace SMSMessage.Service
             var url = new NSUrl($"sms:{phoneNumber}&body={message}");
             return UIApplication.SharedApplication.OpenUrl(url);
         }
+
+        public async Task<List<(string, bool)>> SendMessageAsync(List<string> phoneNumbers, string message)
+        {
+            var resultList = new List<(string, bool)>();
+
+            foreach (var phoneNumber in phoneNumbers)
+            {
+                var url = new NSUrl($"sms:{phoneNumber}&body={message}");
+                var status = UIApplication.SharedApplication.OpenUrl(url);
+                resultList.Add((phoneNumber,status));
+            }
+
+            return resultList;
+        }
     }
 }

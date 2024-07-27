@@ -16,6 +16,11 @@ namespace SMSMessage.Service
         {
             return false;
         }
+
+        public async Task<List<(string, bool)>> SendMessageAsync(List<string> phoneNumbers, string message)
+        {
+            return new List<(string, bool)>();
+        }
 #endif
     }
 }
